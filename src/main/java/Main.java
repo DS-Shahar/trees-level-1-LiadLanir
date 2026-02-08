@@ -43,4 +43,56 @@ class Main {
             return true;
         return false;
     }
+  public static int Hight(BinNode<Integer> t)
+	{
+	    if(t==null)
+	    {
+	        return 0;
+	    }
+	    if(1+Hight(t.getRight())>1+Hight(t.getLeft()))
+	    {
+	        return(1+Hight(t.getRight()));
+	    }
+	    else
+	    {
+	        return(1+Hight(t.getLeft()));
+	    }
+	}
+	public static int maxVal(BinNode<Integer> t, int num)
+	{
+	    if(t==null)
+	    {
+	        return num;
+	    }
+	    if(t.getValue()>num)
+	    {
+	        num = t.getValue();
+	        return(Math.max(maxVal(t.getRight(),num),maxVal(t.getLeft(),num)));
+	    }
+	    return(Math.max(maxVal(t.getRight(),num),maxVal(t.getLeft(),num)));
+	}
+	public static boolean isBalanced(BinNode<Integer> t)
+    {
+        if(t == null)
+        {
+            return true;
+        }
+        if(Math.abs(Hight(t.getLeft()) - Hight(t.getRight())) > 1)
+        {
+            return false;
+        }
+        return isBalanced(t.getLeft()) && isBalanced(t.getRight());
+    }
+    public static boolean ex22(BinNode<Integer> t)
+    {
+        if(t==null)
+        {
+            return true;
+        }
+        if(!t.hasRight()&&t.hasLeft()) || t.hasRight() && !t.hasLeft();
+        {
+            return false;
+        }
+        return ex22(t.getLeft()) && ex22(t.getRight());
+    }
 }
